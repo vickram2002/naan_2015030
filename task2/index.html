@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Example</title>
+</head>
+<body>
+    <h1>Personal Information Form</h1>
+    <form id="infoForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" required><br><br>
+        
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" required><br><br>
+        
+        <label for="address">Address:</label>
+        <textarea id="address" rows="4" required></textarea><br><br>
+        
+        <button type="button" onclick="displayInfo()">Submit</button>
+    </form>
+    
+    <h2>Entered Information</h2>
+    <div id="infoDisplay"></div>
+
+    <script>
+        function displayInfo() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const address = document.getElementById("address").value;
+
+            const infoDisplay = document.getElementById("infoDisplay");
+            infoDisplay.innerHTML = `
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Phone Number:</strong> ${phone}</p>
+                <p><strong>Address:</strong> ${address}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
