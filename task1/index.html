@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .task {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .task .task-info {
+            flex: 1;
+        }
+
+        .task h3 {
+            margin: 0;
+        }
+
+        .task p {
+            margin: 0;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .task .task-date {
+            flex: 0;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border-radius: 3px;
+        }
+
+        .add-task-button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="task">
+            <div class="task-info">
+                <h3>Task 1</h3>
+                <p>Complete assignment</p>
+            </div>
+            <div class="task-date">
+                2023-05-18 09:00 AM
+            </div>
+        </div>
+        <div class="task">
+            <div class="task-info">
+                <h3>Task 2</h3>
+                <p>Buy groceries</p>
+            </div>
+            <div class="task-date">
+                2023-05-19 03:30 PM
+            </div>
+        </div>
+        <div class="task">
+            <div class="task-info">
+                <input type="text" id="taskName" placeholder="Task Name">
+            </div>
+            <div class="task-date">
+                <input type="button" id="addTaskButton" value="Add Task">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const addTaskButton = document.getElementById('addTaskButton');
+        const taskNameInput = document.getElementById('taskName');
+        const container = document.querySelector('.container');
+
+        addTaskButton.addEventListener('click', function () {
+            const taskName = taskNameInput.value;
+            if (taskName) {
+                const newTask = document.createElement('div');
+                newTask.classList.add('task');
+                newTask.innerHTML = `
+                    <div class="task-info">
+                        <h3>${taskName}</h3>
+                        <p>Task description</p>
+                    </div>
+                    <div class="task-date">
+                        ${getCurrentDateTime()}
+                    </div>
+                `;
+
+                container.insertBefore(newTask, addTaskButton);
+                taskNameInput.value = '';
+            }
+        });
+
+        function getCurrentDateTime() {
+            const now = new Date();
+            const options = {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+            };
+            return now.toLocaleDateString('en-US', options);
+        }
+    </script>
+</body>
+</html>
